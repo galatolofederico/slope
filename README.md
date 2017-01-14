@@ -4,7 +4,7 @@ Super Light Objective Processor Emulator (aka slope) is a very light and simple 
 
 The entire project was realized for an university exam, so it **is not** complete or usable in real life.
 
-I've developed too a super-simple compiler(that compiles in bytecode) for a weak-typed scripting language.
+I've developed too a super-simple compiler(that compiles in bytecode) for a weak-typed scripting language. The Slope Virtual Machine is also capable of handling user-defined objects (like sList), just write your objects is C++ and use them in the Slope scripting language (linking may be unfriendly).
 
 ## Install
 
