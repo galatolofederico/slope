@@ -1,7 +1,9 @@
 ## Synopsis
 
 Super Light Objective Processor Emulator (aka slope) is a very light and simple virtual machine for an object-oriented processor.
+
 The entire project was realized for an university exam, so it **is not** complete or usable in real life.
+
 I've developed too a super-simple compiler(that compiles in bytecode) for a waek-typed scripting language.
 
 ## Install
@@ -12,6 +14,8 @@ sudo make install
 ```
 
 ## Examples
+
+This code:
 
 ```
 function main(){
@@ -35,6 +39,8 @@ Test 10
 str * int
 rep rep rep rep rep rep rep rep rep rep 
 ```
+
+And this one:
 
 ```
 #type list 256
