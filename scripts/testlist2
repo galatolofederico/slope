@@ -1,0 +1,27 @@
+#! /usr/local/bin/slope
+
+#type list 256
+#operation push 0
+#operation pop 1
+#operation index 2
+#operation len 3
+
+function crealista(max){
+	j = 0
+	li = list()
+	while(j < max){
+		li.push(j)
+		j = j + 1
+	}
+	return(li)
+}
+
+
+function main(){
+	a = 0
+	print("n?")
+	input(a)
+	l = crealista(a)
+	print("The list is "+l))
+}
+

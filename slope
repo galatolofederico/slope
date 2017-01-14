@@ -1,0 +1,8 @@
+#! /bin/bash
+
+tmp="."$1".out"
+
+slope-compiler $1 $tmp
+slope-vm $tmp
+
+rm $tmp

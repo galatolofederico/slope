@@ -1,0 +1,12 @@
+#! /usr/local/bin/slope
+
+function saluta(nome){
+	print("Hi "+nome+"!")
+}
+
+function main(){
+	nome = ""
+	print("What's your name?")
+	input(nome)
+	saluta(nome)
+}

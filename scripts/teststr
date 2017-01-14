@@ -1,0 +1,11 @@
+#! /usr/local/bin/slope
+
+function main(){
+	a = 10
+	print("str + str")
+	print("Hello "+"world")
+	print("str + int")
+	print("Test "+a)
+	print("str * int")
+	print("rep "*a)
+}

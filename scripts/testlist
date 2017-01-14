@@ -1,0 +1,36 @@
+#! /usr/local/bin/slope
+
+#type list 256
+#operation push 0
+#operation pop 1
+#operation index 2
+#operation len 3
+
+function stampalista(lista){
+	i = 0
+	while(i < lista.len()){
+		print(lista.index(i))
+		i = i + 1
+	}
+	return(0)
+}
+
+function crealista(max){
+	j = 0
+	li = list()
+	while(j < max){
+		li.push(j)
+		j = j + 1
+	}
+	return(li)
+}
+
+
+function main(){
+	a = 0
+	print("n?")
+	input(a)
+	l = crealista(a)
+	stampalista(l)
+}
+

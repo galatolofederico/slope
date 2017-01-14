@@ -1,0 +1,110 @@
+Ad ogni campo dati(statico o dinamico) è associato un id su 32 bit
+Gli id possono essere specificati nel modulo di caricamento per gli oggetti statici
+o generati in maniera dinamica (ad. es. l'istruzione LOAD_STACK)
+
+Tre stack uno degli operandi, uno dei risultati ed uno delle chiamate
+
+Forma del modulo di caricamento:
+
+
+<tipo>		tipo dell'oggetto da caricare
+<id>		id dell'oggetto da caricare
+<len> 		numero di bytes seguenti con i dati
+<dati>*len	...
+
+ad es.
+
+<codice>
+<0x01>
+<...>
+OPCODE ARG..
+...
+<stringa>
+<0x4>
+ciao
+....
+
+
+Caricamento dinamico (formato dati):(1)
+
+<tipo>		Tipo dell'oggetto da caricare
+<len>		numero di bytes seguenti con i dati
+<dati>*len   ...
+
+
+
+Opcodes:
+
+8bit opcode
+32bit arg
+
+Instruzioni per la manipolazione degli stacks:
+
+LOAD_STACK				Estrae n. elementi dallo stack degli operandi, si aspetta di trovare i dati specificati nel formato (1)
+						Deposita nello stack dei risultati l'id dell'oggeto creato
+				
+STORE_CONST <arg>		Deposita nello stack degli operandi il valore <arg>
+
+STORE_RES				Estrae un elemento dallo stack dei risultati e lo deposita nello stack degli operandi
+
+STORE_STACK <arg>		Deposita nello stack degli operandi il valore in offset <arg> nello stack dei risultati
+
+CLEAN_STACK				Pulisce lo stack degli operandi
+
+DISCARD_RES				Estrae un elemento dallo stack dei risultati
+
+COPY_OPERANDS <arg>		Copia <arg> elementi (a partire dall'offset -<arg>) dallo stack degli operandi in quello dei risultati
+
+STORE_OP				Estrae un elemento dallo stack degli operandi e lo deposita nello stack dei risultati
+
+
+Istruzioni per il controllo di flusso:
+
+CALL <arg>				Deposita IP nello stack delle chiamante ed esegue il codice con id <arg>
+
+JMP_TRUE <arg>			Estrae un elemento dallo stack degli operandi, se l'elemento estratto corrisponde all'id di un tipo bool
+						e se il valore è "true" allora IP = IP + <arg>
+						
+JMP <arg>				IP = IP + <arg>
+
+RET						Estrae un elemento dallo stack delle chiamante e sostituisce IP con tale elemento
+
+Istruzioni algebriche:
+
+SUM						Estrae due elementi dallo stack degli operandi e deposita il risultato della somma degli oggetti
+						corrispondenti agli id estratti nello stacke dei risultati
+						
+MIN						Estrae due elementi dallo stack degli operandi e deposita il risultato della sottrazione degli oggetti
+						corrispondenti agli id estratti nello stacke dei risultati
+						
+MUL						Estrae due elementi dallo stack degli operandi e deposita il risultato della moltiplicazione degli oggetti
+						corrispondenti agli id estratti nello stacke dei risultati
+						
+DIV						Estrae due elementi dallo stack degli operandi e deposita il risultato della divisione degli oggetti
+						corrispondenti agli id estratti nello stacke dei risultati
+						
+MOD						Estrae due elementi dallo stack degli operandi e deposita il resto della divisione tra gli oggetti
+						corrispondenti agli id estratti nello stacke dei risultati
+
+COPY					Estrae due elementi dallo stack degli operandi e copia il primo nel secondo
+
+BUILD_TYPE <arg>		Deposita nello stack dei risultati l'id del nuovo oggetto creato di tipo <arg>
+
+OP <arg>				Estrae un elemento dallo stack degli operandi, esegue l'operazione di ordine <arg> sull'elemento corrisponde all'id estratto
+
+LOWER					Estrae due elementi dallo stack degli operandi e deposita nello stack dei risultati l'id di un oggetto bool con valore "true"
+						se il primo è minore del secondo e "false" alrimenti
+
+HIGHER					Estrae due elementi dallo stack degli operandi e deposita nello stack dei risultati l'id di un oggetto bool con valore "true"
+						se il primo è maggiore del secondo e "false" alrimenti
+
+EQUALS					Estrae due elementi dallo stack degli operandi e deposita nello stack dei risultati l'id di un oggetto bool con valore "true"
+						se il primo è uguale al secondo e "false" alrimenti
+
+
+Istruzioni per l'ingresso e uscita dati:
+
+
+OUT						Estrae due elementi dallo stack degli operandi e scrive il secondo nel primo (il primo deve essere un descrittore di IO)
+
+IN						Estrae due elementi dallo stack degli operandi e scrive nel secondo ciò che legge dal primo (il primo deve essere un descrittore di IO)

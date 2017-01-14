@@ -1,0 +1,16 @@
+#! /usr/local/bin/slope
+
+function conta(max){
+	i = 0
+	while(i < max){
+		print(i)
+		i = i + 1
+	}
+}
+
+function main(){
+	a = 0
+	print("Last number?")
+	input(a)
+	conta(a)
+}
